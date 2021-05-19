@@ -101,7 +101,7 @@ class Pemeriksaan extends CI_Controller
     {
         $data['title'] = 'Histori Tes';
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['listhasil'] = $this->Pemeriksaan_model->getListHasil();
+        $data['listhasil'] = $this->Pemeriksaan_model->getListHasil($data['user']['id']);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar', $data);

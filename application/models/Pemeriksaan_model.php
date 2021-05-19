@@ -36,9 +36,9 @@ class Pemeriksaan_model extends CI_Model
         return $this->db->get_where('data_hasil_joined', ['id' => $max_id['id']])->row_array();
     }
 
-    public function getListHasil()
+    public function getListHasil($user_id)
     {
-        return $this->db->get('data_hasil_joined')->result_array();
+        return $this->db->get_where('data_hasil_joined', ['pemeriksa_id' => $user_id])->result_array();
     }
 
     public function deleteHistori($hasil_id)

@@ -85,4 +85,9 @@ class Auth extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-info" role="alert">Berhasil Logout.</div>');
         redirect('auth');
     }
+
+    public function blocked()
+    {
+        $this->load->view('auth/blocked');
+    }
 }

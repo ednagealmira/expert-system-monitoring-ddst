@@ -14,22 +14,27 @@
 
             <!-- Nav Item -->
             <li class="nav-item">
-                <a class="nav-link" href="home">
+                <a class="nav-link" href="<?= base_url('home') ?>">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Home</span>
                 </a>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider mb-0">
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Pemeriksaan
+            </div>
 
             <!-- Nav Item -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="<?= base_url('pemeriksaan'); ?>">
                     <i class="fas fa-fw fa-cubes"></i>
                     <span>Mulai Tes Denver II</span>
                 </a>
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="<?= base_url('pemeriksaan/histori'); ?>">
                     <i class="fas fa-fw fa-cubes"></i>
                     <span>Histori Tes</span>
                 </a>

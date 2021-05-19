@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2021 at 05:17 PM
+-- Generation Time: May 19, 2021 at 06:19 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -40,7 +40,9 @@ CREATE TABLE `data_anak` (
 --
 
 INSERT INTO `data_anak` (`id`, `nama`, `umur`, `gender`, `nama_ortu`) VALUES
-(1, 'Matilda', 33, 'P', 'Maemunnah');
+(1, 'Matilda', 33, 'P', 'Maemunnah'),
+(2, 'Brian', 3, 'P', 'Lucy'),
+(3, 'Aaron', 12, 'L', 'Sharon');
 
 -- --------------------------------------------------------
 
@@ -61,8 +63,9 @@ CREATE TABLE `data_hasil` (
 --
 
 INSERT INTO `data_hasil` (`id`, `anak_id`, `hasil_id`, `pemeriksa_id`, `tgl_tes`) VALUES
-(1, 1, 3, 1, 1621428978),
-(2, 1, 3, 1, 1621429848);
+(3, 1, 1, 1, 1621437751),
+(4, 2, 1, 1, 1621437958),
+(5, 3, 2, 3, 1621440694);
 
 -- --------------------------------------------------------
 
@@ -72,6 +75,7 @@ INSERT INTO `data_hasil` (`id`, `anak_id`, `hasil_id`, `pemeriksa_id`, `tgl_tes`
 --
 CREATE TABLE `data_hasil_joined` (
 `id` int(11)
+,`pemeriksa_id` int(11)
 ,`tgl_tes` int(11)
 ,`nama` varchar(128)
 ,`umur` int(11)
@@ -877,7 +881,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nama`, `username`, `password`) VALUES
-(1, 'Ednagea Almira', 'ednagealmira', '$2y$10$ekZsSrpSx/DF1cVbZjjm/..cyx2mOl..RCWqNyVDoy2YIG0FC0EYa');
+(1, 'Ednagea Almira', 'ednagealmira', '$2y$10$ekZsSrpSx/DF1cVbZjjm/..cyx2mOl..RCWqNyVDoy2YIG0FC0EYa'),
+(2, 'Jonathan', 'jonathan22', '$2y$10$cgFHIT/QubEpWxrC.azcvuE9ur02N7LrCCqrGOZURpyEv0dMtDni2'),
+(3, 'Emily', 'emilyy', '$2y$10$dBdVNgznvMnh3rwVEZdFZ.zcIgcPU10FEMgTwP4vPBt.smz2a2j7O');
 
 -- --------------------------------------------------------
 
@@ -886,7 +892,7 @@ INSERT INTO `user` (`id`, `nama`, `username`, `password`) VALUES
 --
 DROP TABLE IF EXISTS `data_hasil_joined`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `data_hasil_joined`  AS  select `data_hasil`.`id` AS `id`,`data_hasil`.`tgl_tes` AS `tgl_tes`,`data_anak`.`nama` AS `nama`,`data_anak`.`umur` AS `umur`,`data_anak`.`gender` AS `gender`,`data_anak`.`nama_ortu` AS `nama_ortu`,`hasil_keputusan`.`keputusan` AS `keputusan` from ((`data_hasil` join `data_anak` on(`data_hasil`.`anak_id` = `data_anak`.`id`)) join `hasil_keputusan` on(`data_hasil`.`hasil_id` = `hasil_keputusan`.`id`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `data_hasil_joined`  AS  select `data_hasil`.`id` AS `id`,`data_hasil`.`pemeriksa_id` AS `pemeriksa_id`,`data_hasil`.`tgl_tes` AS `tgl_tes`,`data_anak`.`nama` AS `nama`,`data_anak`.`umur` AS `umur`,`data_anak`.`gender` AS `gender`,`data_anak`.`nama_ortu` AS `nama_ortu`,`hasil_keputusan`.`keputusan` AS `keputusan` from ((`data_hasil` join `data_anak` on(`data_hasil`.`anak_id` = `data_anak`.`id`)) join `hasil_keputusan` on(`data_hasil`.`hasil_id` = `hasil_keputusan`.`id`)) ;
 
 -- --------------------------------------------------------
 
@@ -951,13 +957,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `data_anak`
 --
 ALTER TABLE `data_anak`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `data_hasil`
 --
 ALTER TABLE `data_hasil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `hasil_keputusan`
@@ -987,7 +993,7 @@ ALTER TABLE `soal_list`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

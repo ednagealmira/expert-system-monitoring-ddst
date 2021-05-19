@@ -31,6 +31,8 @@ class Pemeriksaan_model extends CI_Model
 
     public function getHasilTesAnak($anakid)
     {
-        return $this->db->get_where('data_hasil', ['anak_id' => $anakid])->row_array();
+        $this->db->select_max('id');
+        $max_id = $this->db->get('data_hasil_joined')->row_array();
+        return $this->db->get_where('data_hasil_joined', ['anak_id' => $anakid, 'id' => $max_id['id']])->row_array();
     }
 }

@@ -95,9 +95,6 @@ class Pemeriksaan extends CI_Controller
         $this->load->view('templates/topbar', $data);
         $this->load->view('pemeriksaan/hasiltes', $data);
         $this->load->view('templates/footer');
-        var_dump($data['anak']);
-        echo 'hasil:' ;
-        var_dump($data['hasil']);
     }
 
     public function histori ()

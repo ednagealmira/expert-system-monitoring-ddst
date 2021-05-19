@@ -13,7 +13,7 @@ class Pemeriksaan_model extends CI_Model
         $max_data = $this->db->get('data_anak')->row_array();
         return $this->db->get_where('data_anak', ['id' => $max_data['id']])->row_array();
     }
-
+    
     public function getListSektor()
     {
         return $this->db->get('sektor')->result_array();
@@ -29,10 +29,21 @@ class Pemeriksaan_model extends CI_Model
         $this->db->insert('data_hasil', $data);
     }
 
-    public function getHasilTesAnak($anakid)
+    public function getHasilTesAnak()
     {
         $this->db->select_max('id');
         $max_id = $this->db->get('data_hasil_joined')->row_array();
-        return $this->db->get_where('data_hasil_joined', ['anak_id' => $anakid, 'id' => $max_id['id']])->row_array();
+        return $this->db->get_where('data_hasil_joined', ['id' => $max_id['id']])->row_array();
+    }
+
+    public function getListHasil()
+    {
+        return $this->db->get('data_hasil_joined')->result_array();
+    }
+
+    public function deleteHistori($hasil_id)
+    {
+        $this->db->where('id', $hasil_id);
+        $this->db->delete('data_hasil');
     }
 }

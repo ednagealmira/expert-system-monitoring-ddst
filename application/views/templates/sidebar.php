@@ -30,7 +30,7 @@
 
             <!-- Nav Item -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('pemeriksaan'); ?>">
+                <a class="nav-link pb-0" href="<?= base_url('pemeriksaan'); ?>">
                     <i class="fas fa-fw fa-cubes"></i>
                     <span>Mulai Tes Denver II</span>
                 </a>

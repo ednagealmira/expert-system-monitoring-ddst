@@ -2,7 +2,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Sistem Informasi Kearsipan <?= date('Y'); ?></span>
+                        <span>Copyright &copy; Kelompok 2 IFREGPIL2018</span>
                     </div>
                 </div>
             </footer>
@@ -55,37 +55,6 @@
 
     <!-- Page level custom scripts -->
     <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
-
-    <script>
-        $('.custom-file-input').on('change', function() {
-            let fileName = $(this).val().split('\\').pop();
-            $(this).next('.custom-file-label').addClass("selected").html(fileName);
-        });
-
-        $('.check-input-role').on('click', function() {
-            const roleId = $(this).data('role');
-            const menuId = $(this).data('menu');
-
-            $.ajax({
-                url: "<?= base_url('admin/changeaccess'); ?>",
-                type: 'post',
-                data: {
-                    roleId: roleId,
-                    menuId: menuId
-                },
-                success: function() {
-                    document.location.href = "<?= base_url('admin/roleaccess/'); ?>" + roleId
-                }
-            })
-        });
-
-        $(".custom-multiple-file-input").on("change", function() {
-            var files = Array.from(this.files)
-            var fileName = files.map(f =>{return f.name}).join(", ")
-            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-        });
-
-    </script>
 
 </body>
 

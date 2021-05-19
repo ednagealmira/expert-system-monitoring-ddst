@@ -69,8 +69,8 @@ class Pemeriksaan extends CI_Controller
                 else if($hasil == 'R') $R++;
             }
             
-            if ($F <= 1 && $R < 1) $keputusan = 1;
-            else if ($F > 1 && $R < 1) $keputusan = 2;
+            if ($F <= 1 && $R <= 1) $keputusan = 1;
+            else if ($F > 1 && $R <= 1) $keputusan = 2;
             else $keputusan = 3;
             
             $datahasil = [
@@ -88,23 +88,31 @@ class Pemeriksaan extends CI_Controller
     {
         $data['title'] = 'Hasil Tes DDST';
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['anak'] = $this->Pemeriksaan_model->getDataAnak();
-        $data['hasil'] = $this->Pemeriksaan_model->getHasilTesAnak($data['anak']['id']);
+        $data['hasil'] = $this->Pemeriksaan_model->getHasilTesAnak();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar', $data);
         $this->load->view('pemeriksaan/hasiltes', $data);
         $this->load->view('templates/footer');
+
     }
 
-    public function histori ()
+    public function histori()
     {
         $data['title'] = 'Histori Tes';
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['listhasil'] = $this->Pemeriksaan_model->getListHasil();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
         $this->load->view('templates/topbar', $data);
         $this->load->view('pemeriksaan/histori');
         $this->load->view('templates/footer');
+    }
+
+    public function historidelete($hasil_id)
+    {
+        $this->Pemeriksaan_model->deleteHistori($hasil_id);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Histori berhasil dihapus.</div>');
+        redirect('pemeriksaan/histori');
     }
 }
